@@ -14,23 +14,24 @@ import java.net.InetSocketAddress;
 public class ModuleWiFi extends Module {
     private static ModuleWiFi instance;
     private final WifiBaseManager wifiBaseManager;
-    private ClientWiFi clientWiFi;
-    private static String SSID = "SCALES.ESP.36.6.4";
+    //private ClientWiFi clientWiFi;
+    private Client clientWiFi;
+    //private static String SSID = "SCALES.ESP.36.6.4";
+    private static String SSID = "SCALES";
     private static final String KEY = "12345678";
 
     protected ModuleWiFi(Context context, String version, InterfaceCallbackScales event) throws Exception{
         super(context,version,event);
         versionName = version;
-        wifiBaseManager = new WifiBaseManager(context,SSID,KEY, onWifiBaseManagerListener);
+        wifiBaseManager = new WifiBaseManager(context, SSID, KEY, onWifiBaseManagerListener);
     }
 
     public static void create(Context context, String moduleVersion, InterfaceCallbackScales event) throws Exception {
-        SSID = "SCALES.ESP.36.6.4";
         instance = new ModuleWiFi(context, moduleVersion, event);
     }
 
     public static void create(Context context, String moduleVersion, String ssid, InterfaceCallbackScales event)throws Exception {
-        SSID = ssid;
+        //SSID = ssid;
         instance = new ModuleWiFi(context, moduleVersion, event);
     }
 
@@ -60,7 +61,8 @@ public class ModuleWiFi extends Module {
             clientWiFi.killWorkingThread();
         }
         try {
-            clientWiFi = new ClientWiFi(getContext(), ipAddress);
+            clientWiFi = new ClientWebSoket(getContext(), ipAddress);
+
             clientWiFi.restartWorkingThread();
         } catch (Exception e) {
             Log.e(TAG, e.getMessage());

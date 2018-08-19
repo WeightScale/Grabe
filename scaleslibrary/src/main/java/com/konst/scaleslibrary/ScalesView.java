@@ -34,7 +34,7 @@ public class ScalesView extends LinearLayout implements OnInteractionListener/*,
     private FragmentManager fragmentManager;
     private BaseReceiver baseReceiver;
     private String version;
-    private String addressDevice;
+    //private String addressDevice;
     /** Версия пограммы весового модуля. */
     private final int microSoftware = 5;
     private InterfaceCallbackScales interfaceCallbackScales;
@@ -58,14 +58,14 @@ public class ScalesView extends LinearLayout implements OnInteractionListener/*,
      */
     public ScalesView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-
         instance = this;
 
         settings = new Settings(context, SETTINGS);
         //settings = new Settings(context);
-        addressDevice = settings.read(R.string.KEY_ADDRESS, "");
+        //addressDevice = settings.read(R.string.KEY_ADDRESS, "");
+        if (!isInEditMode())
+            fragmentManager = ((Activity) getContext()).getFragmentManager();
 
-        fragmentManager = ((Activity) getContext()).getFragmentManager();
 
         baseReceiver = new BaseReceiver(context);
         baseReceiver.register();
@@ -152,7 +152,8 @@ public class ScalesView extends LinearLayout implements OnInteractionListener/*,
     public void createWiFi(String version, InterfaceCallbackScales listener) {
         this.version = version;
         interfaceCallbackScales = listener;
-        fragment = FragmentWiFi.newInstance(version, addressDevice,this);
+        String ssid = settings.read(R.string.KEY_WIFI_SSID, "");
+        fragment = FragmentWiFi.newInstance(version, ssid,this);
         fragmentManager.beginTransaction().replace(R.id.fragment, fragment, fragment.getClass().getName()).commit();
     }
 
@@ -162,7 +163,8 @@ public class ScalesView extends LinearLayout implements OnInteractionListener/*,
     public void createBluetooth(String version, InterfaceCallbackScales listener) {
         this.version = version;
         interfaceCallbackScales = listener;
-        fragment = FragmentBluetooth.newInstance(version, addressDevice, this);
+        String address = settings.read(R.string.KEY_ADDRESS, "");
+        fragment = FragmentBluetooth.newInstance(version, address, this);
         fragmentManager.beginTransaction().replace(R.id.fragment, fragment, fragment.getClass().getName()).commit();
     }
 
@@ -172,7 +174,8 @@ public class ScalesView extends LinearLayout implements OnInteractionListener/*,
     public void createComPort(String version, InterfaceCallbackScales listener) {
         this.version = version;
         interfaceCallbackScales = listener;
-        Fragment fragment = FragmentComPort.newInstance(version, addressDevice, this);
+        String port = settings.read(R.string.KEY_PORT, "");
+        Fragment fragment = FragmentComPort.newInstance(version, port, this);
         fragmentManager.beginTransaction().replace(R.id.fragment, fragment, fragment.getClass().getName()).commit();
     }
 
@@ -260,7 +263,8 @@ public class ScalesView extends LinearLayout implements OnInteractionListener/*,
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 switch (i) {
                                     case DialogInterface.BUTTON_POSITIVE:
-                                        fragmentManager.beginTransaction().replace(R.id.fragment, BootFragment.newInstance("BOOT", addressDevice), BootFragment.class.getName()).commitAllowingStateLoss();
+                                        String address = settings.read(R.string.KEY_ADDRESS, "");
+                                        fragmentManager.beginTransaction().replace(R.id.fragment, BootFragment.newInstance("BOOT", address), BootFragment.class.getName()).commitAllowingStateLoss();
                                         break;
                                     default:
                                 }

@@ -31,7 +31,8 @@ public class WifiBaseManager {
     private final WifiManager wifiManager;
     private InetSocketAddress inetSocketAddress;
     /** Порт соединения с сервером. Зарезервирован для весов. */
-    private static final int PORT = 1011;
+    //private static final int PORT = 1011;
+    private static final int PORT = 80;
     private String ssid = "", pass = "";
     private static final String TAG = WifiBaseManager.class.getName();
     private static final String PSK = "PSK";
@@ -58,7 +59,7 @@ public class WifiBaseManager {
         this.ssid = ssid;
         pass = key;
         onWifiBaseManagerListener = listener;
-        wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+        wifiManager = (WifiManager) context.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         internet = new Internet(context);
         scanWifiReceiver = new ScanWifiReceiver(context);
         baseReceiver = new BaseReceiver(context);

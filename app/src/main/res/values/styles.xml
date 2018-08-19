@@ -54,10 +54,11 @@
     <style name="MyTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="coordinatorLayoutStyle">@style/Widget.Design.CoordinatorLayout</item>
     </style>
 
-    <style name="MyTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="MyTheme.AppBarOverlay" parent="Base.ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
-    <style name="MyTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    <style name="MyTheme.PopupOverlay" parent="Base.ThemeOverlay.AppCompat.Light"/>
 
 </resources>

@@ -99,7 +99,14 @@ public class SearchDialogWiFi extends SearchDialog {
 
     @Override
     protected void searchDevice() {
-
+        adapter.clear();
+        adapter.notifyDataSetChanged();
+        WifiManager wifiManager =  (WifiManager) getActivity().getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        if (wifiManager != null) {
+            scanResults = wifiManager.getScanResults();
+            adapter = new WiFiListAdapter(getActivity(), scanResults);
+            listView.setAdapter(adapter);
+        }
     }
 
     private final AdapterView.OnItemClickListener onItemClickListener = new AdapterView.OnItemClickListener() {

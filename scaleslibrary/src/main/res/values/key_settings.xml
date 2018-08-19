@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="KEY_ADDRESS">com.konst.scaleslibrary.KEY_ADDRESS</string>
+    <string name="KEY_WIFI_KEY">com.konst.scaleslibrary.KEY_WIFI_KEY</string>
+    <string name="KEY_WIFI_SSID">com.konst.scaleslibrary.KEY_WIFI_SSID</string>
+    <string name="KEY_PORT">com.konst.scaleslibrary.KEY_PORT</string>
     <string name="KEY_DISCRETE">com.konst.scaleslibrary.KEY_DISCRETE</string>
     <string name="KEY_SWITCH_ZERO">com.konst.scaleslibrary.KEY_SWITCH_ZERO</string>
     <string name="KEY_SWITCH_STABLE">com.konst.scaleslibrary.KEY_SWITCH_STABLE</string>

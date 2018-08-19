@@ -17,7 +17,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 /**
  * @author Kostya 20.12.2016.
  */
-public class ClientWiFi implements InterfaceTransferClient {
+public class ClientWiFi extends Client /*implements InterfaceTransferClient*/ {
     private Context mContext;
     private Socket mSocket;
     private WorkerThread workerThread;
@@ -32,17 +32,14 @@ public class ClientWiFi implements InterfaceTransferClient {
     private static final String TAG = ClientWiFi.class.getName();
 
     public ClientWiFi(Context context, String address, int port){
-        mContext = context;
-        this.address = address;
-        this.port = port;
+        super(context,address,port);
     }
 
     public ClientWiFi(Context context, InetSocketAddress address){
-        mContext = context;
-        inetSocketAddress = address;
-        port = inetSocketAddress.getPort();
+        super(context,address);
     }
 
+    @Override
     public void killWorkingThread() {
         if(workerThread != null) {
             workerThread.stopWorkingThread();
@@ -50,16 +47,11 @@ public class ClientWiFi implements InterfaceTransferClient {
         }
     }
 
+    @Override
     public void restartWorkingThread() {
         if(workerThread == null) {
             workerThread = new WorkerThread();
             workerThread.start();
-
-            /*while(true) {
-                if(!workerThread.isAlive()) {
-                    continue;
-                }
-            }*/
         }
     }
 

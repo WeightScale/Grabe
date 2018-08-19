@@ -6,11 +6,12 @@
               android:layout_height="match_parent"
               app:layout_behavior="@string/appbar_scrolling_view_behavior"
               tools:showIn="@layout/app_bar_main"
-              tools:context="com.kostya.scalegrab.ActivityTest">
+              tools:context="com.kostya.cranegrabe.ActivityTest">
+
     <com.konst.scaleslibrary.ScalesView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/scalesView">
+        android:id="@+id/scalesView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
     </com.konst.scaleslibrary.ScalesView>
 
