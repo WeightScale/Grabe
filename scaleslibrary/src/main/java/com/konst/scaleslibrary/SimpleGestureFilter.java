@@ -11,9 +11,9 @@ import android.view.View;
  */
 public class SimpleGestureFilter extends SimpleOnGestureListener {
 
-    public static final int SWIPE_UP = 1;
+    private static final int SWIPE_UP = 1;
     public static final int SWIPE_DOWN = 2;
-    public static final int SWIPE_LEFT = 3;
+    private static final int SWIPE_LEFT = 3;
     public static final int SWIPE_RIGHT = 4;
 
     private static final int MODE_TRANSPARENT = 0;

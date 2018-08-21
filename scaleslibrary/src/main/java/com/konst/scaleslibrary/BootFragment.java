@@ -95,12 +95,12 @@ public class BootFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_boot, null);
-        textLog = (TextView)view.findViewById(R.id.textLog);
-        textStatus = (TextView)view.findViewById(R.id.statusProgress);
-        progressBarJob = (TextProgressBar) view.findViewById(R.id.progressBarJob);
-        imageViewBack = (ImageView)view.findViewById(R.id.buttonBack);
+        textLog = view.findViewById(R.id.textLog);
+        textStatus = view.findViewById(R.id.statusProgress);
+        progressBarJob = view.findViewById(R.id.progressBarJob);
+        imageViewBack = view.findViewById(R.id.buttonBack);
         imageViewBack.setOnClickListener(this);
-        imageViewBoot = (ImageView)view.findViewById(R.id.buttonBoot);
+        imageViewBoot = view.findViewById(R.id.buttonBoot);
         imageViewBoot.setOnClickListener(this);
 
         return view;

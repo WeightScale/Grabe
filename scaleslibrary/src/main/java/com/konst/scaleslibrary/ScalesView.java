@@ -146,38 +146,62 @@ public class ScalesView extends LinearLayout implements OnInteractionListener/*,
         while (BluetoothAdapter.getDefaultAdapter().isEnabled());
     }
 
+    /** Создаем обьект весовой модуль
+     * @param module тип модуля
+     * @param version версия модуля
+     * @param listener обратный вызов
+     */
+    public void create(Module.MODULE module, String version, InterfaceCallbackScales listener) {
+        this.version = version;
+        interfaceCallbackScales = listener;
+        switch (module){
+            case MODULE_WIFI:
+                fragment = FragmentWiFi.newInstance(version, settings.read(R.string.KEY_WIFI_SSID, ""), this);
+            break;
+            case MODULE_BLUETOOTH:
+                fragment = FragmentBluetooth.newInstance(version, settings.read(R.string.KEY_ADDRESS, ""), this);
+            break;
+            case MODULE_COMPORT:
+                fragment = FragmentComPort.newInstance(version, settings.read(R.string.KEY_PORT, ""), this);
+            break;
+            default:
+                //throw new Exception("Неизвестный модуль");
+        }
+        fragmentManager.beginTransaction().replace(R.id.fragment, fragment, fragment.getClass().getName()).commit();
+    }
+
     /** Создаем обьект весовой модуль WiFi.
      * @param version Имя версии весового модуля.
      */
-    public void createWiFi(String version, InterfaceCallbackScales listener) {
+    /*public void createWiFi(String version, InterfaceCallbackScales listener) {
         this.version = version;
         interfaceCallbackScales = listener;
         String ssid = settings.read(R.string.KEY_WIFI_SSID, "");
         fragment = FragmentWiFi.newInstance(version, ssid,this);
         fragmentManager.beginTransaction().replace(R.id.fragment, fragment, fragment.getClass().getName()).commit();
-    }
+    }*/
 
     /** Создаем обьект весовой модуль.
      * @param version Имя версии весового модуля.
      */
-    public void createBluetooth(String version, InterfaceCallbackScales listener) {
+    /*public void createBluetooth(String version, InterfaceCallbackScales listener) {
         this.version = version;
         interfaceCallbackScales = listener;
         String address = settings.read(R.string.KEY_ADDRESS, "");
         fragment = FragmentBluetooth.newInstance(version, address, this);
         fragmentManager.beginTransaction().replace(R.id.fragment, fragment, fragment.getClass().getName()).commit();
-    }
+    }*/
 
     /** Создаем обьект весовой модуль Com Port.
      * @param version Имя версии весового модуля.
      */
-    public void createComPort(String version, InterfaceCallbackScales listener) {
+    /*public void createComPort(String version, InterfaceCallbackScales listener) {
         this.version = version;
         interfaceCallbackScales = listener;
         String port = settings.read(R.string.KEY_PORT, "");
         Fragment fragment = FragmentComPort.newInstance(version, port, this);
         fragmentManager.beginTransaction().replace(R.id.fragment, fragment, fragment.getClass().getName()).commit();
-    }
+    }*/
 
     /** Устанавливаем необходимую дискретность отображения значения веса.
      * @param discrete Значение дискретности (1/2/5/10/20/50).

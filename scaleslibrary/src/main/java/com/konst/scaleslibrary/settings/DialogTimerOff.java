@@ -37,7 +37,7 @@ class DialogTimerOff extends DialogPreference /*implements ActivityPreferences.I
 
     @Override
     protected void onBindDialogView(View view) {
-        numberPicker = (com.konst.scaleslibrary.settings.NumberPicker) view.findViewById(R.id.numberPicker);
+        numberPicker = view.findViewById(R.id.numberPicker);
         numberPicker.setMaxValue(maxValue);
         numberPicker.setMinValue(minValue);
         numberPicker.setDisplayedValues(timeArray);

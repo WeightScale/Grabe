@@ -26,6 +26,7 @@ import com.google.android.gms.ads.InterstitialAd;
 import com.konst.scaleslibrary.ScalesView;
 import com.konst.scaleslibrary.module.Module;
 import com.konst.scaleslibrary.module.scale.InterfaceCallbackScales;
+import com.konst.scaleslibrary.module.Module.MODULE;
 import com.kostya.cranegrabe.internet.Internet;
 import com.kostya.cranegrabe.provider.InvoiceTable;
 import com.kostya.cranegrabe.provider.WeighingTable;
@@ -115,21 +116,13 @@ public class ActivityTest extends AppCompatActivity implements NavigationView.On
         fragmentManager.beginTransaction().add(R.id.fragmentInvoice, fragmentListInvoice, com.kostya.cranegrabe.FragmentListInvoice.class.getSimpleName()).commit();
 
         scalesView = (ScalesView)findViewById(R.id.scalesView);
-        scalesView.createWiFi(globals.getPackageInfo().versionName, new InterfaceCallbackScales() {
+        scalesView.create(MODULE.MODULE_WIFI, globals.getPackageInfo().versionName, new InterfaceCallbackScales() {
             @Override
             public void onCreate(Module obj) {
                 scaleModule = obj;
                 globals.setScaleModule(obj);
             }
         });
-        /*scalesView.createBluetooth(globals.getPackageInfo().versionName, new InterfaceCallbackScales(){
-            @Override
-            public void onCreate(Module obj) {
-                scaleModule = obj;
-                globals.setScaleModule(obj);
-
-            }
-        });*/
     }
 
     @Override

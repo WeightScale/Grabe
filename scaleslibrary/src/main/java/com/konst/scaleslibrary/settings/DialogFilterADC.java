@@ -27,7 +27,7 @@ class DialogFilterADC extends DialogPreference /*implements ActivityPreferences.
 
     @Override
     protected void onBindDialogView(View view) {
-        numberPicker = (com.konst.scaleslibrary.settings.NumberPicker) view.findViewById(R.id.numberPicker);
+        numberPicker = view.findViewById(R.id.numberPicker);
         numberPicker.setMaxValue(maxValue);
         numberPicker.setMinValue(minValue);
         numberPicker.setValue(mNumber);

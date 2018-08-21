@@ -6,10 +6,6 @@ import com.konst.scaleslibrary.module.Commands;
 import com.konst.scaleslibrary.module.Module;
 import com.konst.scaleslibrary.module.ObjectCommand;
 import com.konst.scaleslibrary.module.scale.InterfaceCallbackScales;
-import com.konst.scaleslibrary.module.wifi.ClientWiFi;
-import com.konst.scaleslibrary.module.wifi.WifiBaseManager;
-
-import java.net.InetSocketAddress;
 
 /**
  * @author Kostya on 26.12.2016.

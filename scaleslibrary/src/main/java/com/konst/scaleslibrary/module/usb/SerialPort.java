@@ -1,6 +1,5 @@
 package com.konst.scaleslibrary.module.usb;
 
-import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -9,7 +8,6 @@ import android.content.IntentFilter;
 import android.hardware.usb.UsbDevice;
 import android.hardware.usb.UsbDeviceConnection;
 import android.hardware.usb.UsbManager;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.felhr.usbserial.UsbSerialDevice;
@@ -86,7 +84,7 @@ public class SerialPort implements InterfaceTransferClient {
                 usbSerialDevice.setDataBits(UsbSerialInterface.DATA_BITS_8);            /* Формат данных. */
                 usbSerialDevice.setStopBits(UsbSerialInterface.STOP_BITS_1);            /* Сторовый бит. */
                 usbSerialDevice.setParity(UsbSerialInterface.PARITY_NONE);              /* Бит четности. */
-                usbSerialDevice.setFlowControl(UsbSerialInterface.FLOW_CONTROL_OFF);    /** Флов контроль. */
+                usbSerialDevice.setFlowControl(UsbSerialInterface.FLOW_CONTROL_OFF);    /* Флов контроль. */
                 usbSerialDevice.read(usbReadCallback);
                 Log.i(TAG, "Весы соеденены.");
             } else {

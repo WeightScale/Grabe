@@ -177,10 +177,8 @@ public class Internet {
                         //// TODO: 09.07.2016  
                     }
                 }
-                return;
             } catch (Exception ignored) {
                 Log.e("hhh", "error turning on/off data");
-                return;
             }
         //}
         //return false;

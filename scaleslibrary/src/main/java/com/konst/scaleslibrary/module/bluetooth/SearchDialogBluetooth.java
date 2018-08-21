@@ -3,7 +3,6 @@ package com.konst.scaleslibrary.module.bluetooth;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.app.DialogFragment;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -73,9 +72,9 @@ public class SearchDialogBluetooth extends SearchDialog implements View.OnClickL
         View view = getActivity().getLayoutInflater().inflate(R.layout.search_device, null);
         view.findViewById(R.id.buttonSearch).setOnClickListener(this);
         view.findViewById(R.id.buttonBack).setOnClickListener(this);
-        textViewLog = (TextView)view.findViewById(R.id.textLog);
+        textViewLog = view.findViewById(R.id.textLog);
         log(message);
-        listView = (ListView)view.findViewById(R.id.listViewDevices);  //список весов
+        listView = view.findViewById(R.id.listViewDevices);  //список весов
         listView.setOnItemClickListener(onItemClickListener);
 
         for (int i = 0; settings.contains(getActivity().getString(R.string.KEY_ADDRESS) + i); i++) { //заполнение списка

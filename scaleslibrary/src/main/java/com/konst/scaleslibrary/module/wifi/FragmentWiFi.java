@@ -106,16 +106,16 @@ public class FragmentWiFi extends FragmentView implements View.OnClickListener/*
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_scales_mini, null);
-        progressBarWeight = (ProgressBar)view.findViewById(R.id.progressBarWeight);
-        progressBarStable = (ProgressBar)view.findViewById(R.id.progressBarStable);
-        weightTextView = (TextView)view.findViewById(R.id.weightTextView);
+        progressBarWeight = view.findViewById(R.id.progressBarWeight);
+        progressBarStable = view.findViewById(R.id.progressBarStable);
+        weightTextView = view.findViewById(R.id.weightTextView);
 
         view.findViewById(R.id.buttonSettings).setOnClickListener(this);
         //view.findViewById(R.id.buttonSearch).setOnClickListener(this);
-        layoutSearch = (LinearLayout) view.findViewById(R.id.layoutSearch);
+        layoutSearch = view.findViewById(R.id.layoutSearch);
 
-        textViewBattery = (TextView)view.findViewById(R.id.textBattery);
-        textViewTemperature = (TextView)view.findViewById(R.id.textTemperature);
+        textViewBattery = view.findViewById(R.id.textBattery);
+        textViewTemperature = view.findViewById(R.id.textTemperature);
 
         return view;
     }
@@ -320,7 +320,7 @@ public class FragmentWiFi extends FragmentView implements View.OnClickListener/*
             dialog.show();
             dialog.setContentView(R.layout.zeroing_dialog);
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-            TextView tv1 = (TextView) dialog.findViewById(R.id.textView1);
+            TextView tv1 = dialog.findViewById(R.id.textView1);
             tv1.setText(R.string.Zeroing);
         }
 

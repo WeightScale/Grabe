@@ -9,7 +9,6 @@
 package com.konst.scaleslibrary.settings;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.preference.EditTextPreference;
 import android.util.AttributeSet;
 

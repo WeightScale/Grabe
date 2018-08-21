@@ -8,10 +8,7 @@ import android.net.wifi.WifiManager;
 import android.util.Log;
 import com.google.common.base.Splitter;
 import com.konst.scaleslibrary.module.scale.*;
-import com.konst.scaleslibrary.module.wifi.ClientWiFi;
-import com.konst.scaleslibrary.module.wifi.WifiBaseManager;
 
-import java.net.InetSocketAddress;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -87,6 +84,13 @@ public abstract class Module implements InterfaceModule{
     /** Флаг обнаружения стабильного веса. */
     private boolean enableProcessStable = true;
     protected boolean isAttach;
+
+    /** Константы типов модулей */
+    public enum MODULE{
+        MODULE_WIFI,
+        MODULE_BLUETOOTH,
+        MODULE_COMPORT
+    }
 
     /** Константы результата взвешивания. */
     public enum ResultWeight {

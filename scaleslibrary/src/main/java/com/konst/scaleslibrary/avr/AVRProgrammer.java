@@ -1,6 +1,5 @@
 package com.konst.scaleslibrary.avr;
 
-import android.os.Handler;
 import android.os.Message;
 
 import java.io.InputStream;

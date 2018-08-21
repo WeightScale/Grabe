@@ -11,8 +11,6 @@ import com.konst.scaleslibrary.module.*;
 import com.konst.scaleslibrary.module.wifi.ClientWiFi;
 
 import java.io.*;
-import java.net.InetSocketAddress;
-import java.net.Socket;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;

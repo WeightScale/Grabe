@@ -254,53 +254,62 @@ public class HybiParser {
         byte[] payload = mask(mPayload, mMask, 0);
         int opcode = mOpcode;
 
-        if (opcode == OP_CONTINUATION) {
-            if (mMode == 0) {
-                throw new ProtocolError("Mode was not set.");
-            }
-            mBuffer.write(payload);
-            if (mFinal) {
-                byte[] message = mBuffer.toByteArray();
-                if (mMode == MODE_TEXT) {
-                    mClient.getListener().onMessage(encode(message));
-                } else {
-                    mClient.getListener().onMessage(message);
+        switch (opcode) {
+            case OP_CONTINUATION:
+                if (mMode == 0) {
+                    throw new ProtocolError("Mode was not set.");
                 }
-                reset();
-            }
-
-        } else if (opcode == OP_TEXT) {
-            if (mFinal) {
-                String messageText = encode(payload);
-                mClient.getListener().onMessage(messageText);
-            } else {
-                mMode = MODE_TEXT;
                 mBuffer.write(payload);
-            }
+                if (mFinal) {
+                    byte[] message = mBuffer.toByteArray();
+                    if (mMode == MODE_TEXT) {
+                        mClient.getListener().onMessage(encode(message));
+                    } else {
+                        mClient.getListener().onMessage(message);
+                    }
+                    reset();
+                }
 
-        } else if (opcode == OP_BINARY) {
-            if (mFinal) {
-                mClient.getListener().onMessage(payload);
-            } else {
-                mMode = MODE_BINARY;
-                mBuffer.write(payload);
-            }
+                break;
+            case OP_TEXT:
+                if (mFinal) {
+                    String messageText = encode(payload);
+                    mClient.getListener().onMessage(messageText);
+                } else {
+                    mMode = MODE_TEXT;
+                    mBuffer.write(payload);
+                }
 
-        } else if (opcode == OP_CLOSE) {
-            int    code   = (payload.length >= 2) ? 256 * payload[0] + payload[1] : 0;
-            String reason = (payload.length >  2) ? encode(slice(payload, 2))     : null;
-            Log.d(TAG, "Got close op! " + code + " " + reason);
-            mClient.getListener().onDisconnect(code, reason);
+                break;
+            case OP_BINARY:
+                if (mFinal) {
+                    mClient.getListener().onMessage(payload);
+                } else {
+                    mMode = MODE_BINARY;
+                    mBuffer.write(payload);
+                }
 
-        } else if (opcode == OP_PING) {
-            if (payload.length > 125) { throw new ProtocolError("Ping payload too large"); }
-            Log.d(TAG, "Sending pong!!");
-            mClient.sendFrame(frame(payload, OP_PONG, -1));
+                break;
+            case OP_CLOSE:
+                int code = (payload.length >= 2) ? 256 * payload[0] + payload[1] : 0;
+                String reason = (payload.length > 2) ? encode(slice(payload, 2)) : null;
+                Log.d(TAG, "Got close op! " + code + " " + reason);
+                mClient.getListener().onDisconnect(code, reason);
 
-        } else if (opcode == OP_PONG) {
-            String message = encode(payload);
-            // FIXME: Fire callback...
-            Log.d(TAG, "Got pong! " + message);
+                break;
+            case OP_PING:
+                if (payload.length > 125) {
+                    throw new ProtocolError("Ping payload too large");
+                }
+                Log.d(TAG, "Sending pong!!");
+                mClient.sendFrame(frame(payload, OP_PONG, -1));
+
+                break;
+            case OP_PONG:
+                String message = encode(payload);
+                // FIXME: Fire callback...
+                Log.d(TAG, "Got pong! " + message);
+                break;
         }
     }
 

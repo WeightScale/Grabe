@@ -6,7 +6,6 @@ import android.util.Log;
 
 import com.konst.scaleslibrary.module.Client;
 import com.konst.scaleslibrary.module.Commands;
-import com.konst.scaleslibrary.module.InterfaceModule;
 import com.konst.scaleslibrary.module.Module;
 import com.konst.scaleslibrary.module.ObjectCommand;
 import com.konst.scaleslibrary.module.wifi.websoket.WebSocketClient;
@@ -17,20 +16,19 @@ import org.json.JSONObject;
 
 import java.net.InetSocketAddress;
 import java.net.URI;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ClientWebSoket extends Client {
-    WebSocketClient mConnection;
+    private WebSocketClient mConnection;
     private WorkerThread workerThread;
 
     public ClientWebSoket(Context context, String address, int port){
         super(context, address, port);
     }
 
-    public ClientWebSoket(Context context, InetSocketAddress address){
+    ClientWebSoket(Context context, InetSocketAddress address){
         super(context,address);
     }
 
@@ -52,9 +50,8 @@ public class ClientWebSoket extends Client {
 
     @Override
     public void write(String data) {
-        StringBuilder s = new StringBuilder(data);
         //s.append('\r').append('\n');
-        mConnection.send(s.toString());
+        mConnection.send(data);
     }
 
     @Override
@@ -85,10 +82,9 @@ public class ClientWebSoket extends Client {
     }
 
     private class WorkerThread extends Thread {
-        private AtomicBoolean working;
 
         WorkerThread(){
-            List<BasicNameValuePair> extraHeaders = Arrays.asList(new BasicNameValuePair("Cookie", "session=abcd"));
+            List<BasicNameValuePair> extraHeaders = Collections.singletonList(new BasicNameValuePair("Cookie", "session=abcd"));
             mConnection = new WebSocketClient(URI.create("ws://scl/ws"), webSocketHandler,extraHeaders);
         }
 
@@ -98,7 +94,7 @@ public class ClientWebSoket extends Client {
             mContext.sendBroadcast(new Intent(Module.CONNECT));
         }
 
-        public void stopWorkingThread() {
+        void stopWorkingThread() {
             mConnection.disconnect();
             Thread.currentThread().interrupt();
         }
@@ -141,7 +137,7 @@ public class ClientWebSoket extends Client {
         };
 
 
-    };
+    }
 
 
 

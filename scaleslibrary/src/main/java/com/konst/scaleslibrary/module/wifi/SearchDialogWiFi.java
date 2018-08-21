@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -17,14 +16,10 @@ import android.text.SpannableStringBuilder;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import com.konst.scaleslibrary.R;
 import com.konst.scaleslibrary.SearchDialog;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class SearchDialogWiFi extends SearchDialog {

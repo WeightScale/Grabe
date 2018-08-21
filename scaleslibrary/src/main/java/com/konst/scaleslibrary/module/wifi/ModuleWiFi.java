@@ -1,7 +1,6 @@
 package com.konst.scaleslibrary.module.wifi;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import com.konst.scaleslibrary.module.*;
 import com.konst.scaleslibrary.module.scale.InterfaceCallbackScales;
@@ -20,7 +19,7 @@ public class ModuleWiFi extends Module {
     private static String SSID = "SCALES";
     private static final String KEY = "12345678";
 
-    protected ModuleWiFi(Context context, String version, InterfaceCallbackScales event) throws Exception{
+    private ModuleWiFi(Context context, String version, InterfaceCallbackScales event) throws Exception{
         super(context,version,event);
         versionName = version;
         wifiBaseManager = new WifiBaseManager(context, SSID, KEY, onWifiBaseManagerListener);
@@ -55,7 +54,7 @@ public class ModuleWiFi extends Module {
         }
     }
 
-    public void attach(InetSocketAddress ipAddress) {
+    private void attach(InetSocketAddress ipAddress) {
         super.attach();
         if (clientWiFi !=null){
             clientWiFi.killWorkingThread();
@@ -93,7 +92,7 @@ public class ModuleWiFi extends Module {
 
     public static ModuleWiFi getInstance() {return instance;}
 
-    final WifiBaseManager.OnWifiBaseManagerListener onWifiBaseManagerListener = new WifiBaseManager.OnWifiBaseManagerListener() {
+    private final WifiBaseManager.OnWifiBaseManagerListener onWifiBaseManagerListener = new WifiBaseManager.OnWifiBaseManagerListener() {
         @Override
         public void onConnect(String ssid, InetSocketAddress ipAddress) {
             attach(ipAddress);

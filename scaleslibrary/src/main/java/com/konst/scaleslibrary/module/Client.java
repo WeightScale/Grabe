@@ -2,12 +2,9 @@ package com.konst.scaleslibrary.module;
 
 import android.content.Context;
 
-import com.konst.scaleslibrary.module.wifi.ClientWiFi;
-
 import java.io.BufferedReader;
 import java.io.PrintWriter;
 import java.net.InetSocketAddress;
-import java.net.Socket;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public abstract class Client {

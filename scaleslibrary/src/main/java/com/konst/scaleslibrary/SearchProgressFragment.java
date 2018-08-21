@@ -68,10 +68,10 @@ public class SearchProgressFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         View view = getActivity().getLayoutInflater().inflate(R.layout.connect_dialog, null);
 
-        TextView textView = (TextView)view.findViewById(R.id.textView1);
+        TextView textView = view.findViewById(R.id.textView1);
         textView.setText(getActivity().getString(R.string.Connecting) + '\n' + message);
 
-        ImageButton buttonBack = (ImageButton)view.findViewById(R.id.buttonBack);
+        ImageButton buttonBack = view.findViewById(R.id.buttonBack);
         buttonBack.setVisibility(View.VISIBLE);
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override

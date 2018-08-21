@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 import com.konst.scaleslibrary.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 class BluetoothListAdapter extends ArrayAdapter<BluetoothDevice> {
@@ -35,8 +34,8 @@ class BluetoothListAdapter extends ArrayAdapter<BluetoothDevice> {
         }
         BluetoothDevice o = items.get(position);
         if (o != null) {
-            TextView tt = (TextView) v.findViewById(R.id.topText);
-            TextView bt = (TextView) v.findViewById(R.id.bottomText);
+            TextView tt = v.findViewById(R.id.topText);
+            TextView bt = v.findViewById(R.id.bottomText);
             //LinearLayout linearLayout = (LinearLayout)v.findViewById(R.id.layout_item_bluetooth);
             /*if(position == 0)
                 linearLayout.setBackgroundResource(R.color.background_light);*/

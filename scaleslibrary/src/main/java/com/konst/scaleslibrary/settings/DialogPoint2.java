@@ -37,7 +37,7 @@ public class DialogPoint2 extends DialogPreference /*implements ScaleModule.Weig
     @Override
     protected void onBindDialogView(View view) {
         //textViewSensor = (TextView)view.findViewById(R.id.textViewTitle);
-        editTextPoint2 = (EditText)view.findViewById(R.id.editTextPoint2);
+        editTextPoint2 = view.findViewById(R.id.editTextPoint2);
         super.onBindDialogView(view);
     }
 

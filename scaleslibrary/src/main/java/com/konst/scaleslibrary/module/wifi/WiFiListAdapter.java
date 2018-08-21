@@ -1,7 +1,6 @@
 package com.konst.scaleslibrary.module.wifi;
 
 /*  */
-import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.net.wifi.ScanResult;
 import android.view.LayoutInflater;
@@ -35,8 +34,8 @@ class WiFiListAdapter extends ArrayAdapter<ScanResult> {
         }
         ScanResult o = items.get(position);
         if (o != null) {
-            TextView tt = (TextView) v.findViewById(R.id.topText);
-            TextView bt = (TextView) v.findViewById(R.id.bottomText);
+            TextView tt = v.findViewById(R.id.topText);
+            TextView bt = v.findViewById(R.id.bottomText);
             //LinearLayout linearLayout = (LinearLayout)v.findViewById(R.id.layout_item_bluetooth);
             /*if(position == 0)
                 linearLayout.setBackgroundResource(R.color.background_light);*/

@@ -3,14 +3,12 @@ package com.konst.scaleslibrary.module.wifi;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
-import com.google.common.base.Splitter;
+
 import com.konst.scaleslibrary.module.*;
-import com.konst.scaleslibrary.module.scale.ObjectScales;
 
 import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.Socket;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -21,8 +19,8 @@ public class ClientWiFi extends Client /*implements InterfaceTransferClient*/ {
     private Context mContext;
     private Socket mSocket;
     private WorkerThread workerThread;
-    protected BufferedReader bufferedReader;
-    protected PrintWriter printWriter;
+    private BufferedReader bufferedReader;
+    private PrintWriter printWriter;
     private ObjectCommand response;
     private AtomicBoolean working;
     private InetSocketAddress inetSocketAddress;
@@ -150,7 +148,7 @@ public class ClientWiFi extends Client /*implements InterfaceTransferClient*/ {
             }
         }
 
-        public void stopWorkingThread() {
+        void stopWorkingThread() {
             working.set(false);
             try {mSocket.close();} catch (Exception e) { }
             try {bufferedReader.close();} catch (Exception e) { }

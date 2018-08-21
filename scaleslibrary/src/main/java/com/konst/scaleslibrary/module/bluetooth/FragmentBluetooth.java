@@ -101,9 +101,9 @@ public class FragmentBluetooth extends FragmentView implements View.OnClickListe
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_scales_mini, null);
-        progressBarWeight = (ProgressBar)view.findViewById(R.id.progressBarWeight);
-        progressBarStable = (ProgressBar)view.findViewById(R.id.progressBarStable);
-        weightTextView = (TextView)view.findViewById(R.id.weightTextView);
+        progressBarWeight = view.findViewById(R.id.progressBarWeight);
+        progressBarStable = view.findViewById(R.id.progressBarStable);
+        weightTextView = view.findViewById(R.id.weightTextView);
         //weightTextView.setOnLongClickListener(this);
         //weightTextView.setCompoundDrawablesWithIntrinsicBounds( R.drawable.stroke, 0, 0, 0);
         //weightTextView.setShadowLayer(10, 0, 0,   getResources().getColor(R.color.text));
@@ -112,10 +112,10 @@ public class FragmentBluetooth extends FragmentView implements View.OnClickListe
 
         view.findViewById(R.id.buttonSettings).setOnClickListener(this);
         //view.findViewById(R.id.buttonSearch).setOnClickListener(this);
-        layoutSearch = (LinearLayout) view.findViewById(R.id.layoutSearch);
+        layoutSearch = view.findViewById(R.id.layoutSearch);
 
-        textViewBattery = (TextView)view.findViewById(R.id.textBattery);
-        textViewTemperature = (TextView)view.findViewById(R.id.textTemperature);
+        textViewBattery = view.findViewById(R.id.textBattery);
+        textViewTemperature = view.findViewById(R.id.textTemperature);
 
         return view;
     }
@@ -317,7 +317,7 @@ public class FragmentBluetooth extends FragmentView implements View.OnClickListe
             dialog.show();
             dialog.setContentView(R.layout.zeroing_dialog);
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-            TextView tv1 = (TextView) dialog.findViewById(R.id.textView1);
+            TextView tv1 = dialog.findViewById(R.id.textView1);
             tv1.setText(R.string.Zeroing);
         }
 
@@ -368,7 +368,7 @@ public class FragmentBluetooth extends FragmentView implements View.OnClickListe
                         openSearchProgress(msg);
                         break;
                     case InterfaceModule.ACTION_CONNECT_ERROR:
-                        try {ModuleBluetooth.getInstance().dettach();}catch (Exception e){};
+                        try {ModuleBluetooth.getInstance().dettach();}catch (Exception e){}
                         SpannableStringBuilder text = new SpannableStringBuilder("нет соединения");
                         text.setSpan(new TextAppearanceSpan(getActivity(), R.style.SpanTextKgMini),0,text.length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
                         weightTextView.setText(text, TextView.BufferType.SPANNABLE);
