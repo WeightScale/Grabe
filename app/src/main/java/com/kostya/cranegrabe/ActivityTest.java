@@ -79,10 +79,10 @@ public class ActivityTest extends AppCompatActivity implements NavigationView.On
 
         vibrator = (Vibrator)getSystemService(Context.VIBRATOR_SERVICE);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -91,12 +91,12 @@ public class ActivityTest extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setOnDragListener(new View.OnDragListener() {
             @Override
@@ -115,7 +115,7 @@ public class ActivityTest extends AppCompatActivity implements NavigationView.On
         fragmentListInvoice = com.kostya.cranegrabe.FragmentListInvoice.newInstance(new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).format(new Date()));
         fragmentManager.beginTransaction().add(R.id.fragmentInvoice, fragmentListInvoice, com.kostya.cranegrabe.FragmentListInvoice.class.getSimpleName()).commit();
 
-        scalesView = (ScalesView)findViewById(R.id.scalesView);
+        scalesView = findViewById(R.id.scalesView);
         scalesView.create(MODULE.MODULE_WIFI, globals.getPackageInfo().versionName, new InterfaceCallbackScales() {
             @Override
             public void onCreate(Module obj) {
